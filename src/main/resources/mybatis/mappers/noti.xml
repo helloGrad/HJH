@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="noti">
+
+	
+	<!-- 허주한 -->
+	<select id="getNotiList" resultType="notiVo" parameterType="map">
+		<![CDATA[
+		select SLCTN_NOTI_NO slctnNotiNo, ADMIN_NO adminNo, ORGNZ_NO orgnzNo, SLCTN_NOTI_DSTNCT slctnNotiDstnct, SLCTN_TITLE slctnTitle
+		from slctn_noti
+		where SLCTN_NOTI_DSTNCT like concat('%',#{type},'%')
+		]]>
+		<if test="page>=0">
+			<![CDATA[
+			limit #{pageVo.startRow},#{pageVo.numToShow};
+			]]>
+		</if>
+		
+	</select>
+	<!-- 허주한 -->
+	<select id="countNotiList" resultType="int" parameterType="string">
+		<![CDATA[
+		select count(*)
+		from slctn_noti
+		where SLCTN_NOTI_DSTNCT like concat('%',#{type},'%');
+		]]>
+	</select>
+
+	
+	<!-- 정예린 -->
+	<select id="getGradByNo" resultType="notiVo" parameterType="int">
+		<![CDATA[
+			select s.SLCTN_NOTI_NO slctnNotiNo, s.ADMIN_NO adminNo, s.ORGNZ_NO orgnzNo, o.addr addr, s.SLCTN_NOTI_DSTNCT slctnNotiDstnct, s.NOTI_REGST_DT notiRegstDt, 
+			date_format(s.SLCTN_BEGIN_DT ,'%Y/%m/%d') slctnBeginDt, date_format(s.SLCTN_END_DT,'%Y/%m/%d') slctnEndDt, 
+			s.SLCTN_TITLE slctnTitle, s.SLCTN_TEXT slctnText,s.SUPRT_QUALF suprtQualf, s.SLCTN_NOPS slctnNops, s.SLSN_MTH slsnMth,
+			s.SBMT_DOC_TEXT sbmtDocText, s.CHRGR_DSTNCT chrgrDstnct,s.CHRGR_NM chrgrNm,s.CHRGR_TEL_NO chrgrTelNo,s.CHRGR_EMAIL chrgrEmail, s.SLCTN_NOTI_URL slctnNotiUrl, s.RCP_MTH rcpMth, date_format(s.SLSN_BEGIN_DD,'%Y/%m/%d') slsnBeginDd, date_format(s.SLSN_END_DD,'%Y/%m/%d') slsnEndDd,
+			s.SLSN_PLAC slsnPlac,date_format(s.SCCN_ANCM_DD,'%Y/%m/%d') sccnAncmDd,s.SCCN_ANCM_MTH sccnAncmMth,date_format(s.REGST_BEGIN_DD,'%Y/%m/%d') regstBeginDd,date_format(s.REGST_END_DD,'%Y/%m/%d') regstEndDd,s.REGST_MTH regstMth
+			from slctn_noti s, organz o
+			where s.ORGNZ_NO=o.ORGNZ_NO
+			and s.SLCTN_NOTI_NO=#{no }
+		]]>
+	</select>
+
+	<!-- 박가혜 -->
+	<select id="getLabByNo" resultType="notiVo" parameterType="int">
+		<![CDATA[
+			select s.SLCTN_NOTI_NO slctnNotiNo, s.ADMIN_NO adminNo, s.ORGNZ_NO orgnzNo, o.addr addr, s.SLCTN_NOTI_DSTNCT slctnNotiDstnct, s.NOTI_REGST_DT notiRegstDt, 
+			date_format(s.SLCTN_BEGIN_DT ,'%Y/%m/%d') slctnBeginDt, date_format(s.SLCTN_END_DT,'%Y/%m/%d') slctnEndDt, 
+			s.SLCTN_TITLE slctnTitle, s.SLCTN_TEXT slctnText,s.SUPRT_QUALF suprtQualf, s.SLCTN_NOPS slctnNops, s.SLSN_MTH slsnMth,
+			s.SBMT_DOC_TEXT sbmtDocText, s.CHRGR_DSTNCT chrgrDstnct,
+			s.TUITION_SUPRT_YN tuitionSuprtYn, s.LVNC_SUPRT_YN lvncSuprtYn, s.BK21_EORGNZ_SUPRT_YN bk21EorgnzSuprtYn, s.INCET_SUPRT_YN incetSuprtYn, s.LRSTY_JOINGFEE_SUPRT_YN lrstyJoingfeeSuprtYn,
+			s.DORM_SUPRT_YN dormSuprtYn, s.INTERN_YN internYn, s.LRSTY_JOING_YN lrstyJoingYn, s.RESRCH_TASK_JOING_YN resrchTaskJoingYn, s.STDTR_OPPTY_SUPRT_YN stdtrOpptySuprtYn,
+			s.EDU_PGM_JOING_SUPRT_YN eduPgmJoingSuprtYn, s.SUPRT_FVR_TEXT suprtFvrText,
+			s.CHRGR_NM chrgrNm,s.CHRGR_TEL_NO chrgrTelNo,s.CHRGR_EMAIL chrgrEmail,
+			s.SUPRT_QUALF suprtQualf, s.ONLINE_SUPRT_YN onlineSuprtYn, s.PRMRY_RESRCH_FIELD prmryResrchField
+			from slctn_noti s, organz o
+			where s.ORGNZ_NO=o.ORGNZ_NO
+			and s.SLCTN_NOTI_NO=#{no }
+		]]>
+
+	</select>
+	
+	<!-- 허주한 -->
+	<select id="getNextNo" resultType="int" parameterType="map">
+		<![CDATA[
+		select ifnull(min(slctn_noti_no),-1)
+		from slctn_noti
+		where slctn_noti_no > #{no}
+		and SLCTN_NOTI_DSTNCT like #{tabnm};
+		
+		]]>
+	</select>
+	
+	<!-- 허주한 -->
+	<select id="getPrevNo" resultType="int" parameterType="map">
+		<![CDATA[
+		select ifnull(max(slctn_noti_no),-1)
+		from slctn_noti
+		where slctn_noti_no < #{no}
+		and SLCTN_NOTI_DSTNCT like #{tabnm};
+		]]>
+	</select>
+	
+
+</mapper>
