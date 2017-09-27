@@ -72,25 +72,25 @@ public class HomeController {
 		HttpSession session = request.getSession(true);
 
 		MemberVo authUser = (MemberVo) session.getAttribute("authUser");
-		if(authUser==null) {
-			return "main";
+		
+		if(authUser!=null) {
+			List<CodeVo> codeList = memberService.getinfoList(authUser);
+			List<StudyVo> BoardList = new ArrayList<StudyVo>();
+			List<StudyVo> tempBoardList = memberService.getArticleByInfo(codeList,-1l);
+			
+			int days = -1;
+			int num = 1;
+			int preDays = -1;
+			
+			
+			for(int i=0;i<tempBoardList.size();i++) {
+				if(tempBoardList.get(i).getSlctnNotiDstnct().equals("대학원") || tempBoardList.get(i).getSlctnNotiDstnct().equals("연구실"))
+					BoardList.add(tempBoardList.get(i));
+			}
+			
+			model.addAttribute("myBoardList", BoardList);
 		}
 		
-		List<CodeVo> codeList = memberService.getinfoList(authUser);
-		List<StudyVo> BoardList = new ArrayList<StudyVo>();
-		List<StudyVo> tempBoardList = memberService.getArticleByInfo(codeList,-1l);
-		
-		int days = -1;
-		int num = 1;
-		int preDays = -1;
-		
-		
-		for(int i=0;i<tempBoardList.size();i++) {
-			if(tempBoardList.get(i).getSlctnNotiDstnct().equals("대학원") || tempBoardList.get(i).getSlctnNotiDstnct().equals("연구실"))
-				BoardList.add(tempBoardList.get(i));
-		}
-		
-		model.addAttribute("myBoardList", BoardList);
 		model.addAttribute("MemberVo", memberVo);		
 		return "loginmain";
 	}

@@ -281,28 +281,46 @@ public class MemberController {
 
 
 
-		for(int i=0;i<BoardList.size();i++) {
-			
-			//연구실일 경우 모집연구 분야(1:다) 할당
-			if(BoardList.get(i).getSlctnNotiDstnct().equals("연구실")) {
-				BoardList.get(i).setResearchList(memberService.getReasearchList(BoardList.get(i).getSlctnNotiNo()));
-			}
-			
-			days = Integer.parseInt(BoardList.get(i).getDay());
-
-			if(preDays != days) {
-				num = 1;
-				BoardList.get(i).setNo(num++);
+		//그룹 번호 할당
+		if(type.equals("-1")||type.equals("noti")) {
+			for(int i=0;i<BoardList.size();i++) {
+				
+				//연구실일 경우 모집연구 분야(1:다) 할당
+				if(BoardList.get(i).getSlctnNotiDstnct().equals("연구실")) {
+					BoardList.get(i).setResearchList(memberService.getReasearchList(BoardList.get(i).getSlctnNotiNo()));
+				}
+				
 				days = Integer.parseInt(BoardList.get(i).getDay());
+
+				if(preDays != days) {
+					num = 1;
+					BoardList.get(i).setNo(num++);
+					days = Integer.parseInt(BoardList.get(i).getDay());
+				}
+				if(preDays == days) {
+					BoardList.get(i).setNo(num++);
+				}
+				preDays = days;
 			}
-			if(preDays == days) {
-				BoardList.get(i).setNo(num++);
-			}
-			preDays = days;
 		}
+		
+		if(type.equals("myscrap")||type.equals("myboard")) {
+			int boardNum = 1;
+			int notiNum = 1;
+			for(int i=0;i<BoardList.size();i++) {
+				if(BoardList.get(i).getSlctnNotiDstnct().equals("연구실")||BoardList.get(i).getSlctnNotiDstnct().equals("대학원")) {
+					BoardList.get(i).setNo(notiNum++);
+					System.out.println(BoardList.get(i).getNo());
+				}else {
+					BoardList.get(i).setNo(boardNum++);
+					System.out.println(BoardList.get(i).getNo());
+				}
+			}
+		}
+		
 
 
-
+		model.addAttribute("type", type);
 		model.addAttribute("calList", calList);
 		model.addAttribute("infoList", codeList);
 		model.addAttribute("BoardList", BoardList);

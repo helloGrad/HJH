@@ -281,6 +281,16 @@ body {
 
             }
         });
+        
+        $(function(){
+        	$('.logmore').on('click',function(){
+        		if($(this).val()==''){
+        			$('#login').css('display','block');
+        		}else{
+        			location.href='/net/user/setting'
+        		}
+        	})
+        })
     </script>
 </head>
 <body>
@@ -300,10 +310,8 @@ body {
                 contents title
             -->
             <h3>
-                <a href="${pageContext.request.contextPath}/user/mypage">
                     You might interest
-                    <button type="button" class="more">More ></button>
-                </a>
+                    <button type="button" class="more logmore" value="${authUser.mbNo }">More ></button>
             </h3>
 
             <hr>
