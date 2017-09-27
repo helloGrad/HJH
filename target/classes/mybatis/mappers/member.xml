@@ -400,6 +400,8 @@ where (a.slctnNotiNo, slctnNotiDstnct) in (
 	<select id="getMyBoardList" parameterType="long" resultType="studyVo">
 	<![CDATA[
 	select w.AVLBL_BEGIN_DT notiRegstDt, year(w.AVLBL_BEGIN_DT) year, month(w.AVLBL_BEGIN_DT) month, DAYOFMONTH(w.AVLBL_BEGIN_DT) day ,w.WRTBT_DSTNCT slctnNotiDstnct, w.WRTBT_TEXT wrtbtText, w.WRTBT_TITLE wrtbtTitle
+	 , (select count(*) from wetbt w2 where w2.PRNTS_WRTBT_NO = w.wrtbt_no) count
+	 , (select w2.WRTBT_TEXT from wetbt w2 where w2.PRNTS_WRTBT_NO = w.wrtbt_no order by w2.RCMD_CO desc limit 1) subwrtbtText
 	from bbs b, wetbt w
 	where b.BBS_NO = w.BBS_NO
 	and w.mb_no = #{mbNo}

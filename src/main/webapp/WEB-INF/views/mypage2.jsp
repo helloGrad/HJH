@@ -425,11 +425,11 @@ body {
 					<c:if test="${'게시판' == fn:substring(name,leng-3,leng)}">
 					<div class="qna-banner w3-card w3-round-large">
                     	<div class="w3-small w3-padding ">
-                    		<c:if test="${BoardList.wrtbtDstnct =='일반게시판' }">
-                    			<span class="">Ordinary</span>
-                    		</c:if>
-                        	<c:if test="${BoardList.wrtbtDstnct =='상담게시판' }">
+                        	<c:if test="${fn:substring(name,0,2) =='상담'}">
                     			<span class="">Question</span>
+                    		</c:if>
+                    		<c:if test="${fn:substring(name,0,2) !='상담' }">
+                    			<span class="">Ordinary</span>
                     		</c:if>
                     	</div>
                     	<div class="w3-container w3-center">
@@ -439,24 +439,27 @@ body {
                     		<img src="${pageContext.request.contextPath }${BoardList.storgPath }" alt="게시판 이미지 자리" style="width:100%;">
                     	</c:if>
                     	<div class="w3-container w3-margin-top">
+                    		<c:if test="${fn:substring(name,0,2) =='상담'}">
+                    			<span class="w3-small w3-padding" >Answer</span>
+                    		</c:if>
+                    		<c:if test="${fn:substring(name,0,2) !='상담' }">
+                    			<span class="w3-small w3-padding" >Comment</span>
+                    		</c:if>
 							<c:if test="${BoardList.count>0 }">
-								<c:if test="${BoardList.wrtbtDstnct =='일반게시판' }">
-									<span class="w3-small w3-padding" >Comment</span>
+								<c:if test="${fn:substring(name,0,2) !='상담' }">
                         			<p class="w3-padding content-answers w3-round-large w3-border-blue grad-background-color" style="font-size: 1.8vmin; margin-top: 0em;">
                            			${BoardList.subwrtbtText }
                         			</p>
 								</c:if>
-                        		<c:if test="${BoardList.wrtbtDstnct =='상담게시판' }">
-									<span class="w3-small w3-padding" >Answer</span>
-                        			<p class=" w3-center w3-padding content-answers w3-round-large w3-border-blue grad-background-color" style="font-size: 1.8vmin; margin-top: 0em;">
+                        		<c:if test="${fn:substring(name,0,2) =='상담'}">
+                        			<p class="w3-center w3-padding content-answers w3-round-large w3-border-blue grad-background-color" style="font-size: 1.8vmin; margin-top: 0em;">
                            			${BoardList.subwrtbtText }
                         			</p>
                     			</c:if>
 								
 							</c:if>
                     	</div>
-                    	
-                    	<c:if test="${BoardList.wrtbtDstnct =='상담게시판' }">
+                    	<c:if test="${fn:substring(name,0,2) =='상담' && BoardList.count<=0 }">
                     		<div class="w3-container w3-center w3-padding">
                         	<button class="w3-button w3-block w3-border w3-white w3-round-large w3-text-grey" style="letter-spacing: 2px;">답변하기</button>
                     		</div>
@@ -486,6 +489,9 @@ body {
 											<span class="grad-target">${BoardList.slctnTitle }</span>
 										</p>
 									</div>
+								
+								
+								
 									<div class="noti-period">
                         				<div class="w3-light-grey w3-tiny">
 		                            	<c:if test="${BoardList.percent<=0 }">
@@ -608,11 +614,11 @@ body {
 					<c:if test="${'게시판' == fn:substring(name,leng-3,leng)}">
 					<div class="qna-banner w3-card w3-round-large">
                     	<div class="w3-small w3-padding ">
-                    		<c:if test="${BoardList.wrtbtDstnct =='일반게시판' }">
-                    			<span class="">Ordinary</span>
-                    		</c:if>
-                        	<c:if test="${BoardList.wrtbtDstnct =='상담게시판' }">
+                        	<c:if test="${fn:substring(name,0,2) =='상담'}">
                     			<span class="">Question</span>
+                    		</c:if>
+                    		<c:if test="${fn:substring(name,0,2) !='상담' }">
+                    			<span class="">Ordinary</span>
                     		</c:if>
                     	</div>
                     	<div class="w3-container w3-center">
@@ -622,24 +628,27 @@ body {
                     		<img src="${pageContext.request.contextPath }${BoardList.storgPath }" alt="게시판 이미지 자리" style="width:100%;">
                     	</c:if>
                     	<div class="w3-container w3-margin-top">
+                    		<c:if test="${fn:substring(name,0,2) =='상담'}">
+                    			<span class="w3-small w3-padding" >Answer</span>
+                    		</c:if>
+                    		<c:if test="${fn:substring(name,0,2) !='상담' }">
+                    			<span class="w3-small w3-padding" >Comment</span>
+                    		</c:if>
 							<c:if test="${BoardList.count>0 }">
-								<c:if test="${BoardList.wrtbtDstnct =='일반게시판' }">
-									<span class="w3-small w3-padding" >Comment</span>
+								<c:if test="${fn:substring(name,0,2) !='상담' }">
                         			<p class="w3-padding content-answers w3-round-large w3-border-blue grad-background-color" style="font-size: 1.8vmin; margin-top: 0em;">
                            			${BoardList.subwrtbtText }
                         			</p>
 								</c:if>
-                        		<c:if test="${BoardList.wrtbtDstnct =='상담게시판' }">
-									<span class="w3-small w3-padding" >Answer</span>
-                        			<p class=" w3-center w3-padding content-answers w3-round-large w3-border-blue grad-background-color" style="font-size: 1.8vmin; margin-top: 0em;">
+                        		<c:if test="${fn:substring(name,0,2) =='상담'}">
+                        			<p class="w3-center w3-padding content-answers w3-round-large w3-border-blue grad-background-color" style="font-size: 1.8vmin; margin-top: 0em;">
                            			${BoardList.subwrtbtText }
                         			</p>
                     			</c:if>
-								
 							</c:if>
                     	</div>
                     	
-                    	<c:if test="${BoardList.wrtbtDstnct =='상담게시판' }">
+                    	<c:if test="${fn:substring(name,0,2) =='상담' && BoardList.count<=0 }">
                     		<div class="w3-container w3-center w3-padding">
                         	<button class="w3-button w3-block w3-border w3-white w3-round-large w3-text-grey" style="letter-spacing: 2px;">답변하기</button>
                     		</div>
@@ -790,11 +799,11 @@ body {
 					<c:if test="${'게시판' == fn:substring(name,leng-3,leng)}">
 					<div class="qna-banner w3-card w3-round-large">
                     	<div class="w3-small w3-padding ">
-                    		<c:if test="${BoardList.wrtbtDstnct =='일반게시판' }">
-                    			<span class="">Ordinary</span>
-                    		</c:if>
-                        	<c:if test="${BoardList.wrtbtDstnct =='상담게시판' }">
+                        	<c:if test="${fn:substring(name,0,2) =='상담'}">
                     			<span class="">Question</span>
+                    		</c:if>
+                    		<c:if test="${fn:substring(name,0,2) !='상담' }">
+                    			<span class="">Ordinary</span>
                     		</c:if>
                     	</div>
                     	<div class="w3-container w3-center">
@@ -804,24 +813,27 @@ body {
                     		<img src="${pageContext.request.contextPath }${BoardList.storgPath }" alt="게시판 이미지 자리" style="width:100%;">
                     	</c:if>
                     	<div class="w3-container w3-margin-top">
+                    		<c:if test="${fn:substring(name,0,2) =='상담'}">
+                    			<span class="w3-small w3-padding" >Answer</span>
+                    		</c:if>
+                    		<c:if test="${fn:substring(name,0,2) !='상담' }">
+                    			<span class="w3-small w3-padding" >Comment</span>
+                    		</c:if>
 							<c:if test="${BoardList.count>0 }">
-								<c:if test="${BoardList.wrtbtDstnct =='일반게시판' }">
-									<span class="w3-small w3-padding" >Comment</span>
+								<c:if test="${fn:substring(name,0,2) !='상담' }">
                         			<p class="w3-padding content-answers w3-round-large w3-border-blue grad-background-color" style="font-size: 1.8vmin; margin-top: 0em;">
                            			${BoardList.subwrtbtText }
                         			</p>
 								</c:if>
-                        		<c:if test="${BoardList.wrtbtDstnct =='상담게시판' }">
-									<span class="w3-small w3-padding" >Answer</span>
-                        			<p class=" w3-center w3-padding content-answers w3-round-large w3-border-blue grad-background-color" style="font-size: 1.8vmin; margin-top: 0em;">
+                        		<c:if test="${fn:substring(name,0,2) =='상담'}">
+                        			<p class="w3-center w3-padding content-answers w3-round-large w3-border-blue grad-background-color" style="font-size: 1.8vmin; margin-top: 0em;">
                            			${BoardList.subwrtbtText }
                         			</p>
                     			</c:if>
-								
 							</c:if>
                     	</div>
                     	
-                    	<c:if test="${BoardList.wrtbtDstnct =='상담게시판' }">
+                    	<c:if test="${fn:substring(name,0,2) =='상담' && BoardList.count<=0 }">
                     		<div class="w3-container w3-center w3-padding">
                         	<button class="w3-button w3-block w3-border w3-white w3-round-large w3-text-grey" style="letter-spacing: 2px;">답변하기</button>
                     		</div>
