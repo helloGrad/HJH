@@ -41,7 +41,7 @@
 	<select id="getResrchAcrsltFetchList" resultType="resrchAcrsltVo"
 		parameterType="map">
 		<![CDATA[
-		select r.RESRCH_ACRSLT_NO resrchAcrsltNo, r.ORGNZ_NO orgnzNo, o.ORGNZ_NM orgnzNm, r.ACRSLT_DSTNCT resrchDstnct, r.REGST_DT regDt, r.RESRCH_YYCL resrchYycl, r.RESRCH_TEXT resrchText
+		select r.RESRCH_ACRSLT_NO resrchAcrsltNo, r.ORGNZ_NO orgnzNo, o.ORGNZ_NM orgnzNm, r.ACRSLT_DSTNCT acrsltDstnctt, r.REGST_DT regDt, r.RESRCH_YYCL resrchYycl, r.RESRCH_TEXT resrchText
 		from resrch_acrslt r, organz o
 		where r.ORGNZ_NO= #{orgNo }
 		and r.ACRSLT_DSTNCT like #{type } 
@@ -81,6 +81,6 @@
 		and ACRSLT_DSTNCT like #{type};
 		]]>
 	</select>
-
+	
 
 </mapper>

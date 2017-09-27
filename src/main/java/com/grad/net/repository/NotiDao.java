@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.grad.net.vo.NotiVo;
+import com.grad.net.vo.OrganzVo;
 
 
 
@@ -20,10 +21,21 @@ public class NotiDao {
 	/**
 	 * 허규준
 	 */
-	public List<NotiVo> getNotiList(Map<String, Object> map) {
-		return sqlSession.selectList("noti.getNotiList",map);
+	public List<NotiVo> getNotiList(String type) {
+		return sqlSession.selectList("noti.getNotiList",type);
 	}
 
+	
+
+	/**
+	 * 허규준
+	 */
+	public List<NotiVo> getNotiListByPage(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("noti.getNotiListByPage", map);
+	}
+
+	
 	public NotiVo getByNo(String tabnm, int no) {
 		NotiVo vo = new NotiVo();
 		
@@ -43,28 +55,7 @@ public class NotiDao {
 		
 		return vo;
 	}
-
-	/**
-	 * 허규준
-	 */
-	public List<NotiVo> getNotiListByPage(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		return sqlSession.selectList("noti.getNotiListByPage", map);
-	}
-
-	public int countNotiList(String type) {
-		// TODO Auto-generated method stub
-		return sqlSession.selectOne("noti.countNotiList",type);
-	}
-
-	public int getNextNo(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		return sqlSession.selectOne("noti.getNextNo", map);
-	}
-
-	public int getPrevNo(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		return sqlSession.selectOne("noti.getPrevNo", map);
-	}
+	
+	
 
 }

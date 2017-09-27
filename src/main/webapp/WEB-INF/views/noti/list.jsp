@@ -5,7 +5,6 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/list.css">
 <link rel="stylesheet"
@@ -27,8 +26,8 @@
 		<h3>메인페이지</h3>
 			<div class="col-lg-4 centering">
 				
-				<a id="gradBtn" class="btn btn-primary" href="${pageContext.servletContext.contextPath }/noti/grad" >대학원 더보기</a>
-				<a id="labBtn" class="btn btn-primary" href="${pageContext.servletContext.contextPath }/noti/lab">연구실 더보기</a>
+				<a id="gradBtn" class="btn btn-info" href="${pageContext.servletContext.contextPath }/noti/grad" >대학원 더보기</a>
+				<a id="labBtn" class="btn btn-info" href="${pageContext.servletContext.contextPath }/noti/lab">연구실 더보기</a>
 			</div>
 		</div>
 

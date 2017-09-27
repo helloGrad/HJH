@@ -13,6 +13,7 @@ import com.grad.net.security.Auth;
 import com.grad.net.service.AdminService;
 import com.grad.net.vo.NotiVo;
 import com.grad.net.vo.OrganzVo;
+import com.grad.net.vo.ResrchAcrsltVo;
 
 
 
@@ -32,9 +33,6 @@ public class AdminController {
 		return "admin/main";
 	}
 	
-	/*
-	 * 허주한
-	 * */
 	@RequestMapping("/list")
 	public String registerOrganz() {
 		
@@ -42,22 +40,30 @@ public class AdminController {
 	}
 
 	/*
-	 * 허주한
-	 * */
-	@RequestMapping(value="/organz",method=RequestMethod.POST)
-	public String registerOrganz(@ModelAttribute OrganzVo organzVo,
-			@RequestParam String tabnm, @RequestParam String prntsOrgnzStr) {
+	 * 박가혜
+	 */
+	@RequestMapping("/organz")
+	public String registerOrganz(
+			@RequestParam String tabnm,Model model,OrganzVo organzVo, ResrchAcrsltVo resrchAcrsltVo) {
+
 		
-		adminService.insertOrganz(organzVo, tabnm, prntsOrgnzStr);
-		
+		model.addAttribute("OrganzVo", organzVo);
+		model.addAttribute("ResrchAcrsltVo", resrchAcrsltVo);
 		
 		return "admin/list";		
 	}
 	
 	
+	/*
+	 * 정예린
+	 */	
 	@RequestMapping("/noti")
-	public String registerNoti(@ModelAttribute NotiVo notiVo) {
+	public String registerNoti(@ModelAttribute NotiVo notiVo,						
+			@RequestParam String tabnm) {
 		
+		//System.out.println(notiVo);
+		//System.out.println(tabnm+" " +notiVo);
+		adminService.registerNoti(notiVo, tabnm);
 		return "admin/list";		
 	}
 	

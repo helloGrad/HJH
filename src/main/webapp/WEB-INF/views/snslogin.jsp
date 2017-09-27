@@ -7,15 +7,12 @@
 <!doctype html>
 <html lang="ko">
 <head>
-<script type="text/javascript"
-	src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js"
-	charset="utf-8"></script>
-<script type="text/javascript"
-	src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 </head>
 
 <body>
-
+<c:import url="/WEB-INF/views/modal/login.jsp" />
 	<script type="text/javascript">
 		var naver_id_login = new naver_id_login("4XJQVjfPiPo3e5Xe23hL",
 				"http://127.0.0.1:8080/net/user/snslogin/");
@@ -45,8 +42,8 @@
 			//alert(JSON.stringify(vo));
 
 			$.ajax({
-				url : "/net/user/snslogin",
-				type : "post",
+				url : "/net/api/snslogin",
+				//type : "post",
 				data : "name="+vo.name
 				 +"&email="+vo.email
 				 +"&gender="+vo.gender
@@ -57,14 +54,38 @@
 				 +"&sns=naver",
 
 				success : function(response) {
-
+					
+					if(response.data.exist===true){
+						parent.window.location.href = "/net/loginmain/";
+					}
+					else{
+						parent.window.location.href = "/net?id="+vo.email;
+					}
 					if (response.result === "fail") {
 
 						console.error(response.message);
 						return;
 					}
 
-					parent.window.location.href = "/net/orgnz";
+
+					
+					/**
+					 * 박가혜 2017-08-31 맞춤정보 제안 페이지
+					 */
+					
+						//if(response.data.infoYn == "N" ) { //건너뛰기 안헀으면 
+							
+						
+						
+							//parent.window.location.href = "/net/user/mbinfo";
+							
+						//}else {
+							//parent.window.location.href = "/net/loginmain";
+						
+							
+						//}
+					
+					
 
 				},
 				error : function(jqXHR, status, e) {
@@ -72,6 +93,7 @@
 					console.log(status + " : " + e);
 				}
 			});
+			event.preventDefault();
 
 
 		}

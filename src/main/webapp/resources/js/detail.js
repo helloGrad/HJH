@@ -1,5 +1,5 @@
 /**
- * 허주한2
+ * 허규준
  */
 $(function() {
 	$("#paperBtn").click(fetchList);
@@ -28,7 +28,6 @@ var checkType = function(type){
 		return "학회";
 	}
 	
-	
 }
 var acrArr = ["paper", "project", "patent", "seminar", "academy"];
 
@@ -56,7 +55,6 @@ var countList = function(acrType, engAcrType){
 				console.log('#'+engAcrType+'Btn');
 				$('#'+engAcrType+'Btn').show();
 			}
-			
 			
 			
 		},
@@ -137,5 +135,4 @@ var displayFunction = function(){
 	
 
 }
-
 

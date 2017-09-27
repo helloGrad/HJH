@@ -36,11 +36,12 @@ public class OrganzDao {
 	public List<ResrchAcrsltVo> getResrchAcrsltFecthList(Map<String, Object> map) {		
 		return sqlSession.selectList("organz.getResrchAcrsltFetchList", map);
 	}
-
-
+	
 	public int countResrchAcrslt(Map<String, Object> map) {
 		int num = sqlSession.selectOne("organz.countResrchAcrslt", map);
 		return num;
 	}
+	
+	
 	
 }

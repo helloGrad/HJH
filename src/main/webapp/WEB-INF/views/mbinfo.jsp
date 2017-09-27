@@ -7,7 +7,6 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
 </head>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -44,12 +43,12 @@
 
 								if (this.checked == true) {
 
-									infor.push(this.value);
+									info.push(this.value);
 
 								}
 
 							});
-							for (var i = 0; i < infor.length; i++) {
+							for (var i = 0; i < info.length; i++) {
 								// alert(infor[i]); 
 							}
 
@@ -74,7 +73,7 @@
 												console.error(response.message);
 												return;
 											}
-											parent.window.location.href = "${pageContext.request.contextPath}/user/mbinfo";
+											parent.window.location.href = "${pageContext.request.contextPath}/user/mypage";
 										},
 										error : function(jqXHR, status, e) {
 											console.error(status + " : " + e);
@@ -141,7 +140,10 @@
 					</div>
 				</c:forEach>
 				<button type="submit" id="mbinfo">맞춤정보등록하기</button>
+				
+				
 			</form>
+		
 		</c:otherwise>
 	</c:choose>
 	<c:import url="/WEB-INF/views/include/footer.jsp" />

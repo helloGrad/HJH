@@ -2,16 +2,6 @@ $(function(){
 	$("#allBtn").click(clickTab);
 	$("#gradBtn").click(clickTab);
 	$("#labBtn").click(clickTab);
-	
-	if("${param.page}"==""||"${param.page}"=="1"){
-		$("#prevBtn").addClass("disabled");
-	}
-	if("${param.page}"=="${listCount}"){
-		$("#nextBtn").addClass("disabled");
-	}
-	
-	console.log("123123123")
-	
 	var temp;
 })
 
@@ -60,6 +50,7 @@ var addList = function(type,page){
 	
 	
 	
+	
 
 	$.ajax({
 		url : "/net/noti/api/list?type="+type+"&page="+p,
@@ -94,9 +85,15 @@ function typeToEng(type){
 
 
 
-function openCity(evt, cityName) {
+function openTab(evt, tabName, temp) {
 	var i, tabcontent, tablinks;
-	tabcontent = document.getElementsByClassName("col-lg-8");
+
+	if (temp === 'organz' || temp === 'noti') {
+		tabcontent = document.getElementsByClassName("col-lg-8");
+	} else if (temp === 'admin') {
+		tabcontent = document.getElementsByClassName("col-lg-12");
+	}
+
 	for (i = 0; i < tabcontent.length; i++) {
 		tabcontent[i].style.display = "none";
 	}
@@ -104,8 +101,11 @@ function openCity(evt, cityName) {
 	for (i = 0; i < tablinks.length; i++) {
 		tablinks[i].className = tablinks[i].className.replace(" active", "");
 	}
-	document.getElementById(cityName).style.display = "block";
+	document.getElementById(tabName).style.display = "block";
 	evt.currentTarget.className += " active";
+
 }
-//Get the element with id="defaultOpen" and click on it
-//document.getElementById("allBtn").click();
+
+// Get the element with id="defaultOpen" and click on it
+document.getElementById("defaultOpen").click();
+

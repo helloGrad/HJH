@@ -11,6 +11,9 @@ import com.grad.net.repository.OrganzDao;
 import com.grad.net.vo.OrganzVo;
 import com.grad.net.vo.ResrchAcrsltVo;
 
+/*
+ * 허주한
+ */
 
 @Service
 public class OrganzService {
@@ -36,7 +39,7 @@ public class OrganzService {
 		map.put("type", type);
 		return organzDao.getResrchAcrsltFecthList(map);	
 	}
-
+	
 	public int countResrchAcrslt(int orgNo, String type) {
 		Map<String, Object> map = new HashMap<String, Object>() ;
 		map.put("orgNo", orgNo);

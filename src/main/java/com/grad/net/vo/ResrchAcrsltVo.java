@@ -1,6 +1,8 @@
 package com.grad.net.vo;
 
 public class ResrchAcrsltVo {
+	
+	
 	private int resrchAcrsltNo;
 	private int orgnzNo;
 	private String orgnzNm;
@@ -27,7 +29,6 @@ public class ResrchAcrsltVo {
 	public void setOrgnzNm(String orgnzNm) {
 		this.orgnzNm = orgnzNm;
 	}
-	
 	public String getAcrsltDstnct() {
 		return acrsltDstnct;
 	}
@@ -58,5 +59,11 @@ public class ResrchAcrsltVo {
 				+ ", acrsltDstnct=" + acrsltDstnct + ", regstDt=" + regstDt + ", resrchYycl=" + resrchYycl
 				+ ", resrchText=" + resrchText + "]";
 	}
+	
+	
+	
+	
+
+	
 	
 }

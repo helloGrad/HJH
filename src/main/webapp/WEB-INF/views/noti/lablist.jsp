@@ -1,4 +1,4 @@
-<!-- 허주한 -->
+<!-- 허규준 -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -12,19 +12,122 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script
-	src="${pageContext.request.contextPath}/resources/js/notiList.js"></script>
-<title>Insert title here</title>
+
 <script type="text/javascript">
 
-var p = "${param.page}";
-var listCount = "${listCount}";
-var startPage = "${pageVo.startPage}"
-var endPage = "${pageVo.endPage}";
-var totalPage = "${pageVo.totalPage}";
+/**
+ * 박가혜
+ */
+	var chkCnt = 0;//체크 카운트 0으로 초기화
+	var chkMaxCnt = 3; //체크될 최대 갯수 설정
+	
+	
+	var comlist = [];
+	
+	
+	
+	function chk(chkObj) {
 
+		var chk = chkObj.checked; //체크박스 선택 true/false;
+		var name = chkObj.name; //체크박스 이름 
+		var value = chkObj.value;
+		
+		var len = document.getElementsByName(name).length; //체크박스 총갯수
+	
+
+		if (chk == true) { //선택이면 1증가
+			
+			chkCnt = chkCnt + 1;
+			comlist.push(value);
+			//alert(comlist);
+
+		} else { //취소면 1감소
+			chkCnt = chkCnt - 1;
+			comlist.pop();
+			//alert(comlist);
+		}
+
+		if (chkCnt > chkMaxCnt) {
+
+			alert("3개초과입니다.");
+
+			chkObj.checked = false;
+
+			chkCnt = chkMaxCnt;//3개로 초기화;
+			comlist.pop();
+		
+
+		} else {
+			for (var i = 0; i < len; i++) {
+				if (document.getElementsByName(name)[i].disabled == true) {
+					document.getElementsByName(name)[i].disabled = false;
+				}
+			}
+
+		}
+
+	}
+	
+
+	
+	
+	function comparinsert() {
+		
+		event.preventDefault();
+		
+		//alert("안녕하세요");
+		
+	
+		// ajax 통신 
+		
+		jQuery.ajaxSettings.traditional = true;
+		
+		console.log(JSON.stringify(comlist));
+		
+		$.ajax( {
+			url : "${pageContext.request.contextPath }/noti/api/lab",
+			type: "post",
+			//dataType: "json", // 받아야되는 데이터 타입 
+			data: {comlist : comlist},
+			//data: {list : comlist},
+			//contentType: 'application/json; charset=utf-8', //json 타입으로 데이터를 보낼때 사용함 
+			
+			
+			
+			success: function(response){
+
+				
+					if(response.result === "fail"){
+						
+						
+						console.error(response.message);
+						return;
+					}
+					
+					console.log("성공입니다");
+					console.log(response.data);
+					//response.data.contextpath = "${pageContext.request.contextPath}/noti/api/lab";
+			
+				
+			},
+			error: function( jqXHR, status, e ){
+				console.log("에러입니다");
+				console.error( status + " : " + e );
+				console.log(jqXHR);
+			}
+			} );
+		
+		
+		
+	}
 </script>
 
+
+
+
+
+
+<title>Insert title here</title>
 
 </head>
 <body>
@@ -37,9 +140,9 @@ var totalPage = "${pageVo.totalPage}";
 			<h3>연구실 공고 페이지</h3>
 			<div class="col-lg-4 centering">
 
-				<a id="gradBtn" class="btn btn-primary"
+				<a id="gradBtn" class="btn btn-info"
 					href="${pageContext.servletContext.contextPath }/noti/grad">대학원
-					더보기</a> <a id="labBtn" class="btn btn-primary"
+					더보기</a> <a id="labBtn" class="btn btn-info"
 					href="${pageContext.servletContext.contextPath }/noti/lab">연구실
 					더보기</a>
 			</div>
@@ -77,80 +180,26 @@ var totalPage = "${pageVo.totalPage}";
 				</div>
 			</div>
 
+			<form name="Comparison" id="Comparison" onsubmit="comparinsert();">
 			<div id="gradList" class="col-lg-8">
 				<c:forEach items="${notiList }" var="list" varStatus="status">
 					<div class="col-md-12">
-						<h4>
-							<a
-								href="${pageContext.servletContext.contextPath }/noti/detail?no=${list.slctnNotiNo}&tabnm=${list.slctnNotiDstnct}&page=${page}">${list.slctnTitle }</a>
-						</h4>
+						<h3>
+							<a href="${pageContext.servletContext.contextPath }/noti/detail?no=${list.slctnNotiNo}&tabnm=${list.slctnNotiDstnct}">${list.slctnTitle }</a>
+							<input type="checkbox" name="selectcheck" value="${list.slctnNotiNo}" onclick="javascript:chk(this);"/>	
+					
+
+
+						</h3>
 						<hr>
 					</div>
 				</c:forEach>
 
 			</div>
 			
-			<div id="labPageList" class="col-lg-8">
-				
-				<c:choose>
-					<c:when test="${page<10 }">
-						<a id="prevTBtn" class="btn btn-primary disabled" href="${pageContext.servletContext.contextPath }/noti/lab?page=${pageVo.startPage-10 }" >&lt;&lt;</a>	
-					</c:when>
-					<c:otherwise>
-						<a id="prevTBtn" class="btn btn-primary" href="${pageContext.servletContext.contextPath }/noti/lab?page=${pageVo.startPage-10 }" >&lt;&lt;</a>
-					</c:otherwise>
-				</c:choose>
-				
-				
-				<c:choose>
-					<c:when test="${page=='1'||page=='' }">
-						<a id="prevBtn" class="btn btn-primary disabled" href="${pageContext.servletContext.contextPath }/noti/lab?page=${page-1 }" >&lt;</a>
-					</c:when>
-					
-					<c:otherwise>
-						<a id="prevBtn" class="btn btn-primary" href="${pageContext.servletContext.contextPath }/noti/lab?page=${page-1 }" >&lt;</a>
-					</c:otherwise>
-				</c:choose>
-				
-				
-				
-									
-					<c:forEach begin="${pageVo.startPage }" end="${pageVo.endPage }" var="i" step="1">
-					
-						<c:choose>
-							<c:when test="${page==i }">
-								<a id="gradPageBtn${i }" class="btn btn-primary disabled" href="${pageContext.servletContext.contextPath }/noti/lab?page=${i }" >${i }</a>
-							</c:when>
-							
-							<c:otherwise>
-								<a id="gradPageBtn${i }" class="btn btn-primary" href="${pageContext.servletContext.contextPath }/noti/lab?page=${i }" >${i }</a>
-							</c:otherwise>
-						</c:choose>
-					
-					</c:forEach>
-				
-				<c:choose>
-					<c:when test="${page==pageVo.totalPage }">
-						<a id="nextBtn" class="btn btn-primary disabled" href="${pageContext.servletContext.contextPath }/noti/lab?page=${page+1 }" >&gt;</a>
-					</c:when>
-					<c:otherwise>
-						<a id="nextBtn" class="btn btn-primary" href="${pageContext.servletContext.contextPath }/noti/lab?page=${page+1 }" >&gt;</a>
-					</c:otherwise>
-				</c:choose>
-				
-				<c:choose>
-					<c:when test="${pageVo.endPage >=  pageVo.totalPage}">
-						<a id="nextTBtn" class="btn btn-primary disabled" href="${pageContext.servletContext.contextPath }/noti/lab?page=${pageVo.startPage+10 }" >&gt;&gt;</a>
-					</c:when>
-					<c:otherwise>
-						<a id="nextTBtn" class="btn btn-primary" href="${pageContext.servletContext.contextPath }/noti/lab?page=${pageVo.startPage+10 }" >&gt;&gt;</a>
-					
-					</c:otherwise>
-				</c:choose>
-				
-				
-				
-			</div>
+			<input type="submit" value="비교하기">
+ 			
+ 			 </form>
 
 
 		</div>

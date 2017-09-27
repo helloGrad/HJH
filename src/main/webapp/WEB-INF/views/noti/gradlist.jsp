@@ -1,4 +1,4 @@
-<!-- 허주한 -->
+<!-- 허규준 -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -13,20 +13,9 @@
 <script
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
-<script type="text/javascript"
-		src="${pageContext.request.contextPath}/resources/js/bootstrap.js"></script>
 
 <title>Insert title here</title>
-<script type="text/javascript">
 
-var p = "${param.page}";
-var listCount = "${listCount}";
-var startPage = "${pageVo.startPage}"
-var endPage = "${pageVo.endPage}";
-var totalPage = "${pageVo.totalPage}";
-</script>
-<script
-	src="${pageContext.request.contextPath}/resources/js/notiList.js"></script>
 </head>
 <body>
 
@@ -37,8 +26,8 @@ var totalPage = "${pageVo.totalPage}";
 		<h3>대학원 공고 페이지</h3>
 			<div class="col-lg-4 centering">
 				
-				<a id="gradBtn" class="btn btn-primary" href="${pageContext.servletContext.contextPath }/noti/grad" >대학원 더보기</a>
-				<a id="labBtn" class="btn btn-primary" href="${pageContext.servletContext.contextPath }/noti/lab">연구실 더보기</a>
+				<a id="gradBtn" class="btn btn-info" href="${pageContext.servletContext.contextPath }/noti/grad" >대학원 더보기</a>
+				<a id="labBtn" class="btn btn-info" href="${pageContext.servletContext.contextPath }/noti/lab">연구실 더보기</a>
 			</div>
 		</div>
 
@@ -78,34 +67,15 @@ var totalPage = "${pageVo.totalPage}";
 			<div id="gradList" class="col-lg-8">
 				<c:forEach items="${notiList }" var="list" varStatus="status">
 					<div class="col-md-12">
-						<h4>
+						<h3>
 							<a
-								href="${pageContext.servletContext.contextPath }/noti/detail?no=${list.slctnNotiNo}&tabnm=${list.slctnNotiDstnct}&page=${page}">${list.slctnTitle }</a>
-						</h4>
+								href="${pageContext.servletContext.contextPath }/noti/detail?no=${list.slctnNotiNo}&tabnm=${list.slctnNotiDstnct}">${list.slctnTitle }</a>
+						</h3>
 						<hr>
 					</div>
 				</c:forEach>
 
 			</div>
-			
-			<div id="gradPageList" class="col-lg-8">
-				
-				
-				<a id="prevTBtn" class="btn btn-primary" href="${pageContext.servletContext.contextPath }/noti/grad?page=${pageVo.startPage-10 }" ><<</a>
-				<a id="prevBtn" class="btn btn-primary" href="${pageContext.servletContext.contextPath }/noti/grad?page=${page-1 }" ><</a>
-				
-				
-					<c:forEach begin="${pageVo.startPage }" end="${pageVo.endPage }" var="i" step="1">
-						<a id="gradPageBtn${i }" class="btn btn-primary" href="${pageContext.servletContext.contextPath }/noti/grad?page=${i }" >${i }</a>
-					</c:forEach>
-				
-				
-				<a id="nextBtn" class="btn btn-primary" href="${pageContext.servletContext.contextPath }/noti/grad?page=${page+1 }" >></a>
-				<a id="nextTBtn" class="btn btn-primary" href="${pageContext.servletContext.contextPath }/noti/grad?page=${pageVo.startPage+10 }" >>></a>
-			</div>
-			
-			
-		
 
 
 		</div>

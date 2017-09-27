@@ -16,6 +16,9 @@ import com.grad.net.service.MemberService;
 import com.grad.net.vo.MemberVo;
 
 
+/**
+ * ë°•ê°€í˜œ
+ */
 public class AuthLoginInterceptor extends HandlerInterceptorAdapter {	
 
 	@Autowired
@@ -34,23 +37,38 @@ public class AuthLoginInterceptor extends HandlerInterceptorAdapter {
 		
 		if( memberVo == null){
 			
-//			String accept = request.getHeader("accept");			//¼º°ø½Ã Å¬¶óÀÌ¾ğÆ®¿¡ ÀÀ´äÇÑ ¹®±¸¸¦ Á¤ÇØ¼­ ³Ñ°ÜÁÜ
-//			if(accept.matches(".*application/json.*")){
-//				//Àè½¼ ¶óÀÌºê·¯¸®¸¦ »ç¿ëÇÏ¿© ¸Ş¼¼ÁöÄÁ¹öÅÍ·Î jsonÇüÅÂ·Î ÀÀ´ä
-//				//response.getOutputStream().write("{'result':'fail', 'message':'fail', 'data':{no:0}}");
-//			} else {
-//				response.sendRedirect(request.getContextPath()+"/login?result=fail");
-//			}
 			
 			System.out.println(request.getContextPath());
-			response.sendRedirect(request.getContextPath()+"/user/login?result=fail");
+			response.sendRedirect(request.getContextPath()+"?result=fail");
 			return false;
 		}		
 		
 		HttpSession session = request.getSession(true);
 		
 		session.setAttribute("authUser", memberVo);
-		response.sendRedirect(request.getContextPath()+"/");
+		
+	
+		
+		/**
+		 * ë°•ê°€í˜œ 2017-08-31 ë§ì¶¤ì •ë³´ ì œì•ˆ í˜ì´ì§€
+		 */
+	
+		
+
+		if(memberVo.getInfoYn().equals("N")) { //ê±´ë„ˆë›°ê¸° ì•ˆí—€ìœ¼ë©´ 
+			
+			response.sendRedirect(request.getContextPath()+"/user/mbinfo");
+			
+			
+		}else {
+			
+			
+			response.sendRedirect(request.getContextPath()+"/");
+			
+		}
+		
+		
+
 		
 		return false;
 	}	

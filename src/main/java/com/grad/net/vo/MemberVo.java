@@ -24,6 +24,19 @@ public class MemberVo {
 	private String email;
 	
 	private String cdId;
+	private String infoYn;
+	private boolean exist;
+	
+	
+	
+
+	public String getInfoYn() {
+		return infoYn;
+	}
+
+	public void setInfoYn(String infoYn) {
+		this.infoYn = infoYn;
+	}
 
 	public Long getMbNo() {
 		return mbNo;
@@ -176,6 +189,16 @@ public class MemberVo {
 	public void setCdId(String cdId) {
 		this.cdId = cdId;
 	}
+	
+	
+
+	public boolean isExist() {
+		return exist;
+	}
+
+	public void setExist(boolean exist) {
+		this.exist = exist;
+	}
 
 	@Override
 	public String toString() {
@@ -183,11 +206,11 @@ public class MemberVo {
 				+ iden + ", pw=" + pw + ", sex=" + sex + ", birdt=" + birdt + ", myselfAuthzYn=" + myselfAuthzYn
 				+ ", insrdDd=" + insrdDd + ", wthdrDd=" + wthdrDd + ", genalMbDstnct=" + genalMbDstnct
 				+ ", snsTknValue=" + snsTknValue + ", snsDstnct=" + snsDstnct + ", agrg=" + agrg + ", telNo=" + telNo
-				+ ", hndphNo=" + hndphNo + ", email=" + email + ", cdId=" + cdId + "]";
+				+ ", hndphNo=" + hndphNo + ", email=" + email + ", cdId=" + cdId + ", infoYn=" + infoYn + ", exist="
+				+ exist + "]";
 	}
-	
-	
-	
+
+
 
 	
 }

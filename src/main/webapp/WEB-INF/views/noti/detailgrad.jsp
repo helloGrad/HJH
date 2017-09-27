@@ -9,21 +9,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="css/bootstrap.css">
+<link rel="stylesheet" href="css/font-awesome.min.css">
+<link href="css/higrad-signup.css" rel="stylesheet">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/detail.css">
-<script
-	src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>	
-<script
-		src="${pageContext.request.contextPath}/resources/js/notiDetail.js"></script>	
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.js"></script>
 
-<script type="text/javascript">
-<!-- 허주한 -->
-var prevNo = "${prevNo}";
-var nextNo = "${nextNo}";
-
-</script>
 </head>
 <body>
 
@@ -37,9 +33,6 @@ var nextNo = "${nextNo}";
 			<p class="lead">
 				<span class="grad-recruit"> ${vo.slctnTitle }</span> <br>
 				<span class="application-period"> 접수일 ${vo.slctnBeginDt } ~ ${vo.slctnEndDt }</span>
-				<a id="prevBtn" class="btn btn-primary" href="${pageContext.servletContext.contextPath }/noti/detail?no=${prevNo}&tabnm=${param.tabnm}&page=${page}" >이전</a>
-				<a id="nextBtn" class="btn btn-primary" href="${pageContext.servletContext.contextPath }/noti/detail?no=${nextNo}&tabnm=${param.tabnm}&page=${page}" >다음</a>
-				<a id="listBtn" class="btn btn-primary" href="${pageContext.servletContext.contextPath }/noti/grad?page=${page}" >목록</a>
 			</p>
 
 			<hr>
@@ -136,10 +129,12 @@ var nextNo = "${nextNo}";
 			<div id="map"></div>
 			<script>
 				function initMap() {
+
 					var geocoder = new google.maps.Geocoder();
 					var address = document.getElementById('address').value;
 					setCenter(geocoder, address);
 				}
+
 				function setCenter(geocoder, address) {
 					geocoder
 							.geocode(
@@ -174,7 +169,8 @@ var nextNo = "${nextNo}";
 
 
 	<c:import url="/WEB-INF/views/include/footer.jsp" />
-
+	<script
+		src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	<script async defer
 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEl_BNACj7LCF2Hzs2Ft-9-XBf5Z4AZLQ&callback=initMap"></script>
 

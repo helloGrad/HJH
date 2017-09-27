@@ -216,21 +216,18 @@ pageContext.setAttribute("newLine", "\n");
 
 				<!--///////////////////////// 지도 /////////////////////////-->
 				<p class="lead">
-					<i class="glyphicon glyphicon-map-marker"></i> 장소 
-					<span class="location"> • ${vo.addr } ${vo.detailAddr }</span> 
-					<input id="address"	type="hidden" value="${vo.addr }">
+					<i class="glyphicon glyphicon-map-marker"></i> 장소 <span
+						class="location"> • ${vo.addr } ${vo.detailAddr }</span> <input id="address"
+						type="hidden" value="${vo.addr }">
 				</p>
 
 				<div id="map"></div>
 				<script>
                     function initMap() {
-
                         var geocoder = new google.maps.Geocoder();
                         var address = document.getElementById('address').value;
-                        console.log(address);
                         setCenter(geocoder, address);
                     }
-
                     function setCenter(geocoder, address) {
                         geocoder.geocode({
                             'address': address

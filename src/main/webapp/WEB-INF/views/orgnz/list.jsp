@@ -11,6 +11,8 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	
+
 
 
 <title>Insert title here</title>
@@ -24,9 +26,9 @@
 		<!-- ///// filter (대분류) //////-->
 		<div class="row">
 			<div class="col-lg-4 centering">
-				
-				<button class="tablinks" onclick="openCity(event, 'lab')" id="defaultOpen">연구실</button>
-				<button class="tablinks" onclick="openCity(event, 'grad')">대학원</button>
+			
+				<button class="tablinks" onclick="openTab(event, 'lab' , 'organz')" id="defaultOpen">연구실</button>
+				<button class="tablinks" onclick="openTab(event, 'grad', 'organz')">대학원</button>
 			</div>
 		</div>
 
@@ -62,6 +64,8 @@
 						class="glyphicon glyphicon-remove remove-btn"></i></a>
 				</div>
 			</div>
+			
+
 
 			<div id="all" class="col-lg-8">
 				<c:forEach items="${organzList }" var="list" varStatus="status">

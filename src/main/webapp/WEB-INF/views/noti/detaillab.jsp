@@ -15,17 +15,7 @@ pageContext.setAttribute("newLine", "\n");
     <link href="css/higrad-signup.css" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script
-	src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script type="text/javascript">
-<!-- 허주한 -->
-var prevNo = "${prevNo}";
-var nextNo = "${nextNo}";
 
-
-</script>
-<script
-		src="${pageContext.request.contextPath}/resources/js/notiDetail.js"></script>	
     <style>
         #map {
             height: 400px;
@@ -71,9 +61,7 @@ var nextNo = "${nextNo}";
 						
 					</c:otherwise>
 				</c:choose>
-        		<a id="prevBtn" class="btn btn-primary" href="${pageContext.servletContext.contextPath }/noti/detail?no=${prevNo}&tabnm=${param.tabnm}&page=${page}" >이전</a>
-				<a id="nextBtn" class="btn btn-primary" href="${pageContext.servletContext.contextPath }/noti/detail?no=${nextNo}&tabnm=${param.tabnm}&page=${page}" >다음</a>
-				<a id="listBtn" class="btn btn-primary" href="${pageContext.servletContext.contextPath }/noti/lab?page=${page}" >목록</a>
+        
 
         
         </p>
@@ -246,7 +234,6 @@ var nextNo = "${nextNo}";
         <div id="map"></div>
         <script>
             function initMap() {
-            	console.log("1번")
                 var geocoder = new google.maps.Geocoder();
                 var address = document.getElementById('address').value;
                 setCenter(geocoder, address);
@@ -255,7 +242,6 @@ var nextNo = "${nextNo}";
                 geocoder.geocode({
                     'address': address
                 }, function(results, status) {
-                	console.log("2번")
                     if (status === google.maps.GeocoderStatus.OK) {
                         var map = new google.maps.Map(document.getElementById('map'), {
                             zoom: 16,
@@ -273,6 +259,8 @@ var nextNo = "${nextNo}";
                 });
             }
         </script>
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEl_BNACj7LCF2Hzs2Ft-9-XBf5Z4AZLQ&callback=initMap">
+        </script>
 
     </div>
 </div>
@@ -283,6 +271,9 @@ var nextNo = "${nextNo}";
 
 	<!--//////////////////////// footer ////////////////////////////-->
 	<c:import url="/WEB-INF/views/include/footer.jsp" />
+	<script	src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/resources/js/detail.js"></script>
 	<script async defer 
 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEl_BNACj7LCF2Hzs2Ft-9-XBf5Z4AZLQ&callback=initMap"></script>
 	

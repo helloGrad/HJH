@@ -2,7 +2,7 @@ package com.grad.net.vo;
 
 public class PageVo {
 	
-	private int numToShow = 1;	//한페이지에 보여줄 게시물 개수
+	private int numToShow = 5;	//한페이지에 보여줄 게시물 개수
 	private int startRow;
 	private int endRow;
 	private int startPage;

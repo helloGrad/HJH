@@ -128,6 +128,12 @@ public class NotiVo {
 	public void setSbmtDocText(String sbmtDocText) {
 		this.sbmtDocText = sbmtDocText;
 	}
+	public String getSuprtQualf() {
+		return suprtQualf;
+	}
+	public void setSuprtQualf(String suprtQualf) {
+		this.suprtQualf = suprtQualf;
+	}
 	public String getChrgrDstnct() {
 		return chrgrDstnct;
 	}
@@ -235,21 +241,14 @@ public class NotiVo {
 	}
 	public void setSlctnNotiUrl(String slctnNotiUrl) {
 		this.slctnNotiUrl = slctnNotiUrl;
-	}
-	
-	
-	public String getSuprtQualf() {
-		return suprtQualf;
-	}
-	public void setSuprtQualf(String suprtQualf) {
-		this.suprtQualf = suprtQualf;
-	}
+	}	
 	public String getRcpMth() {
 		return rcpMth;
 	}
 	public void setRcpMth(String rcpMth) {
 		this.rcpMth = rcpMth;
 	}
+	
 	public String getSlsnBeginDd() {
 		return slsnBeginDd;
 	}
@@ -298,24 +297,24 @@ public class NotiVo {
 	public void setRegstMth(String regstMth) {
 		this.regstMth = regstMth;
 	}
+	public String getAddr() {
+		return addr;
+	}
+	public void setAddr(String addr) {
+		this.addr = addr;
+	}
 	
-	public String getPrmryResrchField() {
-		return prmryResrchField;
-	}
-	public void setPrmryResrchField(String prmryResrchField) {
-		this.prmryResrchField = prmryResrchField;
-	}
 	public String getOnlineSuprtYn() {
 		return onlineSuprtYn;
 	}
 	public void setOnlineSuprtYn(String onlineSuprtYn) {
 		this.onlineSuprtYn = onlineSuprtYn;
 	}
-	public String getAddr() {
-		return addr;
+	public String getPrmryResrchField() {
+		return prmryResrchField;
 	}
-	public void setAddr(String addr) {
-		this.addr = addr;
+	public void setPrmryResrchField(String prmryResrchField) {
+		this.prmryResrchField = prmryResrchField;
 	}
 	@Override
 	public String toString() {
@@ -333,13 +332,31 @@ public class NotiVo {
 				+ ", rcpMth=" + rcpMth + ", slsnBeginDd=" + slsnBeginDd + ", slsnEndDd=" + slsnEndDd + ", slsnPlac="
 				+ slsnPlac + ", sccnAncmDd=" + sccnAncmDd + ", sccnAncmMth=" + sccnAncmMth + ", regstBeginDd="
 				+ regstBeginDd + ", regstEndDd=" + regstEndDd + ", regstMth=" + regstMth + ", prmryResrchField="
-				+ prmryResrchField + ", onlineSuprtYn=" + onlineSuprtYn + ", addr=" + addr + "]";
+				+ prmryResrchField + ", onlineSuprtYn=" + onlineSuprtYn + ", addr=" + addr + ", getSlctnNotiNo()="
+				+ getSlctnNotiNo() + ", getAdminNo()=" + getAdminNo() + ", getOrgnzNo()=" + getOrgnzNo()
+				+ ", getSlctnNotiDstnct()=" + getSlctnNotiDstnct() + ", getNotiRegstDt()=" + getNotiRegstDt()
+				+ ", getSlctnBeginDt()=" + getSlctnBeginDt() + ", getSlctnEndDt()=" + getSlctnEndDt()
+				+ ", getSlctnTitle()=" + getSlctnTitle() + ", getSlctnText()=" + getSlctnText() + ", getSlctnNops()="
+				+ getSlctnNops() + ", getSlsnMth()=" + getSlsnMth() + ", getSbmtDocText()=" + getSbmtDocText()
+				+ ", getSuprtQualf()=" + getSuprtQualf() + ", getChrgrDstnct()=" + getChrgrDstnct()
+				+ ", getTuitionSuprtYn()=" + getTuitionSuprtYn() + ", getLvncSuprtYn()=" + getLvncSuprtYn()
+				+ ", getBk21EorgnzSuprtYn()=" + getBk21EorgnzSuprtYn() + ", getIncetSuprtYn()=" + getIncetSuprtYn()
+				+ ", getLrstyJoingfeeSuprtYn()=" + getLrstyJoingfeeSuprtYn() + ", getDormSuprtYn()=" + getDormSuprtYn()
+				+ ", getInternYn()=" + getInternYn() + ", getLrstyJoingYn()=" + getLrstyJoingYn()
+				+ ", getResrchTaskJoingYn()=" + getResrchTaskJoingYn() + ", getStdtrOpptySuprtYn()="
+				+ getStdtrOpptySuprtYn() + ", getEduPgmJoingSuprtYn()=" + getEduPgmJoingSuprtYn()
+				+ ", getSuprtFvrText()=" + getSuprtFvrText() + ", getChrgrNm()=" + getChrgrNm() + ", getChrgrTelNo()="
+				+ getChrgrTelNo() + ", getChrgrEmail()=" + getChrgrEmail() + ", getMbNo()=" + getMbNo()
+				+ ", getSlctnNotiUrl()=" + getSlctnNotiUrl() + ", getRcpMth()=" + getRcpMth() + ", getSlsnBeginDd()="
+				+ getSlsnBeginDd() + ", getSlsnEndDd()=" + getSlsnEndDd() + ", getSlsnPlac()=" + getSlsnPlac()
+				+ ", getSccnAncmDd()=" + getSccnAncmDd() + ", getSccnAncmMth()=" + getSccnAncmMth()
+				+ ", getRegstBeginDd()=" + getRegstBeginDd() + ", getRegstEndDd()=" + getRegstEndDd()
+				+ ", getRegstMth()=" + getRegstMth() + ", getAddr()=" + getAddr() + ", getOnlineSuprtYn()="
+				+ getOnlineSuprtYn() + ", getPrmryResrchField()=" + getPrmryResrchField() + ", getClass()=" + getClass()
+				+ ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
 	}
 	
-	
-	
-	
-	
+
 	
 
 }

@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import com.grad.net.repository.NotiDao;
 import com.grad.net.vo.NotiVo;
-import com.grad.net.vo.PageVo;
 
 @Service
 public class NotiService {
@@ -20,15 +19,12 @@ public class NotiService {
 	/**
 	 * 허주한
 	 */
-	public List<NotiVo> getNotiList(String type, PageVo pageVo) {
+	public List<NotiVo> getNotiList(String type) {
 		
-		Map<String, Object> map =  new HashMap<String, Object>();
-		
-		map.put("type", type);
-		map.put("pageVo", pageVo);
-		
-		return notiDao.getNotiList(map);
+		return notiDao.getNotiList(type);
 	}
+	/**
+
 	
 	/**
 	 * 허주한
@@ -40,14 +36,7 @@ public class NotiService {
 		map.put("type", type);
 		return notiDao.getNotiListByPage(map);
 	}
-
-	/**
-	 * 허주한
-	 */
-	public int countNotiList(String type) {
-		
-		return notiDao.countNotiList(type);
-	}
+	
 	
 	/*
 	 * 정예린, 박가혜
@@ -55,25 +44,6 @@ public class NotiService {
 	public NotiVo getNoti(String tabnm, int no) {
 		return notiDao.getByNo(tabnm,no);
 		
-	}
-	/*
-	 * 허주한
-	 */
-	public int getNextNo(String tabnm, int no) {
-		// TODO Auto-generated method stub
-		Map<String, Object> map = new HashMap<String, Object>() ;
-		map.put("tabnm", tabnm);
-		map.put("no", no);
-		return notiDao.getNextNo(map);
-	}
-	/*
-	 * 허주한
-	 */
-	public int getPrevNo(String tabnm, int no) {
-		Map<String, Object> map = new HashMap<String, Object>() ;
-		map.put("tabnm", tabnm);
-		map.put("no", no);
-		return notiDao.getPrevNo(map);
 	}
 
 }

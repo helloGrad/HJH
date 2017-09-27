@@ -1,29 +1,31 @@
-
 package com.grad.net.service;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.grad.net.repository.AdminDao;
-import com.grad.net.vo.OrganzVo;
+import com.grad.net.vo.NotiVo;
 
 @Service
 public class AdminService {
 	
 	@Autowired
-	AdminDao adminDao;
+	private AdminDao adminDao;
 
+	
 	/*
-	 * 허주한
-	 * */
-	public boolean insertOrganz(OrganzVo organzVo, String tabnm, String prntsOrgnzStr) {
-		if(prntsOrgnzStr.isEmpty() || prntsOrgnzStr.equals(null)) {
-			organzVo.setPrntsOrgnzNo(-1);
-		} else {
-			organzVo.setPrntsOrgnzNo(Integer.parseInt(prntsOrgnzStr));
-		}
+	 * 정예린
+	 */	
+	public void registerNoti(NotiVo notiVo, String tabnm) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("notiVo", notiVo);
+		map.put("tabnm", tabnm);
 		
-		return adminDao.insertOrganz(organzVo);
+		System.out.println(notiVo);
+		adminDao.insertNoti(map);		
 	}
 
 }
